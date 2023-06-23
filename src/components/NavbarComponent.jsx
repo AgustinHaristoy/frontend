@@ -53,12 +53,19 @@ const NavStyle = styled.nav`
 	}
 .logo a{
 	text-decoration: none;
+	transition: all 200ms;
 	}
-.logo:hover{
-	border-radius: 5px;
-	background-color: black;
-	color: lightskyblue;
+.logo a:hover{
+	color:white;
 	text-shadow: 2px 1px 5px blue;
+}
+.logo:hover{
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: #2883D4;
+	text-shadow: 2px 1px 5px blue;
+	padding-left: 10px;
+	padding-right: 10px;
 	}
 
 .navbar{
@@ -72,23 +79,26 @@ const NavStyle = styled.nav`
 	margin: 0px 20px 0px 20px;
 	line-height: 70px;
 	letter-spacing: 1px;
+	border-right: 1px solid #fff;
+	padding-right: 20px;
 	}
 .navbar > ul > li a{
 	display: block;
 	text-decoration: none;
 	text-transform: uppercase;
 	padding: 2px;
-	color: blue;
+	color: #2883D4;
 	text-shadow: 2px 1px 5px white;
 	transition: all 200ms;
 	}
 
 .navbar > ul > li a:hover {
-	padding-left: 3px;
-	padding-right: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-radius: 5px;
 	color: lightskyblue;
-	background-color: black;
+	background-color: #2883D4;
 	text-shadow: 2px 1px 5px blue;
+	border: 1px solid white;
 }
 `
