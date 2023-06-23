@@ -6,6 +6,7 @@ import FileInformationAcopioComponent from './components/FileInformationAcopioCo
 import FileUploadGrasaSolidoComponent from './components/FileUploadGrasaSolidoComponent';
 import FileInformationGrasaSolidoComponent from './components/FileInformationGrasaSolidoComponent';
 import ProveedorComponent from './components/ProveedorComponent';
+import AgregarProveedorComponent from './components/AgregarProveedorComponent';
 import PagosComponent from './components/PagosComponent';
 function App() {
   return (
@@ -14,11 +15,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path="/archivos" element={<ArchivosComponent />} />
-        <Route path= "/subir-archivo-acopio" element={<FileUploadAcopioComponent />} />
+        <Route path= "/carga-archivo-acopio" element={<FileUploadAcopioComponent />} />
         <Route path= "/informacion-archivo-acopio" element={<FileInformationAcopioComponent />} />
-        <Route path= "/subir-archivo-grasasolido" element={<FileUploadGrasaSolidoComponent />} />
+        <Route path= "/carga-archivo-grasasolido" element={<FileUploadGrasaSolidoComponent />} />
         <Route path= "/informacion-archivo-grasasolido" element={<FileInformationGrasaSolidoComponent />} />
         <Route path= "/proveedores" element={<ProveedorComponent />} />
+        <Route path= "/agregar-proveedor" element={<AgregarProveedorComponent />} />
         <Route path= "/planilla-pagos" element={<PagosComponent />} />
 
       </Routes>
