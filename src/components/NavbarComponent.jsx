@@ -14,7 +14,7 @@ function NavbarComponent() {
 							<li><a href="/">Inicio</a></li>
 							<li><a href="/proveedores">Proveedores</a></li>
 							<li><a href="/archivos">Archivos</a></li>
-							<li><a href="/planilla_pagos">Pagos</a></li>
+							<li><a href="/planilla-pagos">Pagos</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -32,7 +32,7 @@ const NavStyle = styled.nav`
 	}
 .header{
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	background-color: lightskyblue;
 	border-bottom: 1px solid #ccc;
 	}
