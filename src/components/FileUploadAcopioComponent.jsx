@@ -57,6 +57,7 @@ class FileUploadAcopioComponent extends Component{
                   </Form.Group>
                   <Button varian="primary" onClick={this.onFileUpload}>
                     Cargar el archivo a la Base de Datos</Button>
+                    <Button className="boton" onClick={verArchivo}>Ver carga de Archivo CSV anterior</Button>
                 </Col>
               </Row>
             </div>
@@ -72,6 +73,10 @@ class FileUploadAcopioComponent extends Component{
       </div>
     );
   }
+}
+
+function verArchivo() {
+	window.location.href = '/informacion-archivo-acopio';
 }
 
 export default FileUploadAcopioComponent;
@@ -105,5 +110,22 @@ const Styles = styled.div`
   border-radius: 30px;
   margin-left: 300px;
   margin-right: 300px;
+}
+Button {
+	background-color: #42bfbb;
+	color: white;
+	padding: 14px 0;
+	margin: 10px 0;
+	border: none;
+	cursor: grabbing;
+	width: 100%;
+}
+
+Button:hover {
+	opacity: 0.8;
+}
+
+.boton{
+  background-color: #3028D4;
 }
 `

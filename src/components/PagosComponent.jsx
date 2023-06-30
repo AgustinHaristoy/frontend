@@ -5,6 +5,7 @@ import PagosService from '../services/PagosService';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+
 import swal from 'sweetalert';
 
 export default function PagosComponent(props) {
@@ -12,57 +13,68 @@ export default function PagosComponent(props) {
 		codigo_proveedor: ""
 	};
 
-	const [codigoProveedor, setCodigoProveedor] = useState(initialState);
+	const [input, setInput] = useState(initialState);
 
 	const changeCodigoProveedorHandler = event => {
-		setCodigoProveedor({ ...codigoProveedor, codigo_proveedor: event.target.value });
-		console.log(codigoProveedor.codigo_proveedor);
+		setInput({ ...input, codigo_proveedor: event.target.value });
+		console.log(input.codigo_proveedor);
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		swal({
-			title: "¿Está seguro de que desea generar la planilla de pago de este proveedor?",
-			text: "Una vez enviado, no podrá ser modificado.",
-			icon: "warning",
-			buttons: ["Cancelar", "Enviar"],
-			dangerMode: true
-		}).then(respuesta => {
+
+		try {
+			const respuesta = await swal({
+				title: "¿Está seguro de que desea generar la planilla de pago de este proveedor?",
+				text: "Una vez enviado, no podrá ser modificado.",
+				icon: "warning",
+				buttons: ["Cancelar", "Enviar"],
+				dangerMode: true
+			});
+
 			if (respuesta) {
+				const res = await PagosService.CrearPlanilla(input.codigo_proveedor);
+
 				swal("Planilla de pago efectuada correctamente!", { icon: "success", timer: "3000" });
-				let proveedor = { codigo_proveedor: codigoProveedor.codigo_proveedor };
-				console.log(codigoProveedor.codigo_proveedor)
-				console.log("proveedor => " + JSON.stringify(proveedor));
-				PagosService.CrearPlanilla(proveedor).then(
-					(res) => {
-					}
-				);
-			}
-			else {
+				console.log("Respuesta exitosa:", res);
+
+				window.location.href = '/mostrar-pagos';
+			} else {
 				swal({ text: "Planilla no generada.", icon: "error" });
 			}
-		});
+
+		} catch (error) {
+			swal("Error al generar la planilla de pago.", { icon: "error" });
+			console.error("Error:", error);
+		}
 	};
 
 	return (
+
 		<Styles>
 			<div className="home">
 				<NavbarComponent />
-				<div classname="mainclass">
+				<div className="mainclass">
 					<div className="form1">
 						<h1 className="text-center"><b>Crear Planilla de Pagos</b></h1>
 						<div className="formcontainer">
 							<hr></hr>
 							<div className="container">
-								<Form>
-									<Form.Group className="mb-3" controlId="codigo_proveedor" value={codigoProveedor.codigo_proveedor} onChange={changeCodigoProveedorHandler}>
+								<Form onSubmit={handleSubmit}>
+									<Form.Group className="mb-3" controlId="codigo_proveedor">
 										<Form.Label>Código del proveedor</Form.Label>
-										<Form.Control type="codigo_proveedor" placeholder="Codigo del proveedor de 5 digitos" />
+										<Form.Control
+											type="codigo_proveedor"
+											name="proveedor"
+											placeholder="Codigo del proveedor de 5 digitos"
+											value={input.codigo_proveedor}
+											onChange={changeCodigoProveedorHandler}
+										/>
 									</Form.Group>
+									<Button className="boton" type="submit">Crear Planilla</Button>
+									<Button className="boton2" onClick={cancelForm}>Cancel</Button>
 								</Form>
 							</div>
-							<Button className="boton" onClick={handleSubmit}>Crear Planilla</Button>
-							<Button className="boton2" onClick={cancelForm}>Cancel</Button>
 						</div>
 					</div>
 				</div>
@@ -70,9 +82,9 @@ export default function PagosComponent(props) {
 		</Styles>
 	)
 }
-function cancelForm(){
-	window.location.href = '/proveedores';
- }
+function cancelForm() {
+	window.location.href = '/';
+}
 
 const Styles = styled.div`
 .text-center {

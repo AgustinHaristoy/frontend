@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 function NavbarComponent() {
 	return (
-		<>
+		<div>
 			<NavStyle>
-				<header class="header">
-					<div class="logo">
+				<header className="header">
+					<div className="logo">
 						<a href="/"><h1>MilkStgo</h1></a>
 					</div>
-					<nav class="navbar">
+					<nav className="navbar">
 						<ul>
 							<li><a href="/">Inicio</a></li>
 							<li><a href="/proveedores">Proveedores</a></li>
@@ -19,7 +19,7 @@ function NavbarComponent() {
 					</nav>
 				</header>
 			</NavStyle>
-		</>
+		</div>
 	)
 }
 

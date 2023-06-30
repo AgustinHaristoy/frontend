@@ -8,7 +8,7 @@ import FileUploadService from "../services/FileUploadGrasaSolidoService";
 import styled from "styled-components";
 import swal from 'sweetalert';
 
-class FileUploadGrasaSolidoComponent extends Component{
+class FileUploadGrasaSolidoComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class FileUploadGrasaSolidoComponent extends Component{
   onFileChange(event) {
     this.setState({ file: event.target.files[0] });
   }
-  
+
   onFileUpload = () => {
     swal({
       title: "¿Está seguro de que desea cargar el archivo .csv?",
@@ -28,16 +28,16 @@ class FileUploadGrasaSolidoComponent extends Component{
       icon: "warning",
       buttons: ["Cancelar", "Cargar"],
       dangerMode: true
-    }).then(respuesta=>{
-      if(respuesta){
-        swal("Archivo cargado correctamente!", {icon: "success", timer: "3000"});
+    }).then(respuesta => {
+      if (respuesta) {
+        swal("Archivo cargado correctamente!", { icon: "success", timer: "3000" });
         const formData = new FormData();
         formData.append("file", this.state.file);
         FileUploadService.CargarArchivo(formData).then((res) => {
         });
       }
-      else{
-        swal({text: "Archivo no cargado.", icon: "error"});
+      else {
+        swal({ text: "Archivo no cargado.", icon: "error" });
       }
     });
   };
@@ -57,6 +57,7 @@ class FileUploadGrasaSolidoComponent extends Component{
                   </Form.Group>
                   <Button varian="primary" onClick={this.onFileUpload}>
                     Cargar el archivo a la Base de Datos</Button>
+                  <Button className="boton" onClick={verArchivo}>Ver carga de Archivo CSV anterior</Button>
                 </Col>
               </Row>
             </div>
@@ -72,6 +73,10 @@ class FileUploadGrasaSolidoComponent extends Component{
       </div>
     );
   }
+}
+
+function verArchivo() {
+  window.location.href = '/informacion-archivo-grasasolido';
 }
 
 export default FileUploadGrasaSolidoComponent;
@@ -105,5 +110,22 @@ const Styles = styled.div`
   border-radius: 30px;
   margin-left: 300px;
   margin-right: 300px;
+}
+Button {
+	background-color: #42bfbb;
+	color: white;
+	padding: 14px 0;
+	margin: 10px 0;
+	border: none;
+	cursor: grabbing;
+	width: 100%;
+}
+
+Button:hover {
+	opacity: 0.8;
+}
+
+.boton{
+  background-color: #3028D4;
 }
 `

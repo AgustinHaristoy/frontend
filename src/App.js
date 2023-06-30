@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeComponent from './components/HomeComponent.jsx';
 import ArchivosComponent from './components/ArchivosComponent.jsx';
@@ -8,6 +9,7 @@ import FileInformationGrasaSolidoComponent from './components/FileInformationGra
 import ProveedorComponent from './components/ProveedorComponent';
 import AgregarProveedorComponent from './components/AgregarProveedorComponent';
 import PagosComponent from './components/PagosComponent';
+import MostrarPagosComponent from './components/MostrarPagosComponent';
 function App() {
   return (
     <div>
@@ -22,6 +24,7 @@ function App() {
         <Route path= "/proveedores" element={<ProveedorComponent />} />
         <Route path= "/agregar-proveedor" element={<AgregarProveedorComponent />} />
         <Route path= "/planilla-pagos" element={<PagosComponent />} />
+        <Route path= "/mostrar-pagos" element ={<MostrarPagosComponent />} />
 
       </Routes>
     </BrowserRouter>
